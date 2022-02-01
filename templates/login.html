@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% load static %}
+
+
+
+{% block body %}
+<div class="container">
+  <h1 class="display-3 mb-4">Login </h1>
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+    <label for="floatingInput">Email address</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+    <label for="floatingPassword">Password</label>
+  </div>
+  <button type="submit" class="btn btn-success mb-3">Submit</button><br>
+  <a href="/register/">New User?</a>
+</div>
+{% endblock %}
