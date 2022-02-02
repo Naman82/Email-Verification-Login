@@ -1,26 +1,29 @@
 {% extends 'index.html' %}
-{% load static %}
+<!-- {% load static %} -->
 
 {% block body %}
 <div class="container">
   <h1 class="display-3 mb-4">Register </h1>
+  <form action="/register/" method="post">
+      {% csrf_token %}
   <div class="form-floating mb-3">
-    <input type="text" class="form-control" id="floatingName" placeholder="Name">
-    <label for="floatingName">Email address</label>
+    <input type="text" class="form-control" id="floatingName" placeholder="Name" name="username">
+    <label for="floatingName">Username</label>
   </div>
   <div class="form-floating mb-3">
-    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
     <label for="floatingInput">Email address</label>
   </div>
   <div class="form-floating mb-3">
-    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
     <label for="floatingPassword">Password</label>
   </div>
   <div class="form-floating mb-3">
-    <input type="password" class="form-control" id="floatingPassword2" placeholder="Password2">
+    <input type="password" class="form-control" id="floatingPassword2" placeholder="Password2" name="password2">
     <label for="floatingPassword2">Confirm Password</label>
   </div>
   <button type="submit" class="btn btn-success mb-3">Submit</button><br>
+</form>
   <a href="/">Already a User?</a>
 </div>
 {% endblock %}
