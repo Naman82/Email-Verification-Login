@@ -7,4 +7,6 @@ urlpatterns=[
     path('success/',views.success,name='success'),
     path('token/',views.token_send,name='token_send'),
     path('welcome/',views.welcome,name='welcome'),
+    path('verify/<auth_token>',views.verify,name='verify'),
+    path('error/',views.error,name='error'),
 ]

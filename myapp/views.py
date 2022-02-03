@@ -1,10 +1,13 @@
 from datetime import datetime
 import profile
+from urllib import request
 import uuid
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import Profile
+from django.conf import settings
+from django.core.mail import send_mail
 
 # Create your views here.
 def login(request):
@@ -27,6 +30,7 @@ def register(request):
                 auth_token=str(uuid.uuid4())
                 profile=Profile.objects.create(user=user,auth_token=auth_token,dated=datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
                 profile.save()
+                send_email(email,auth_token)
                 return redirect('/token/')
 
 
@@ -45,3 +49,24 @@ def token_send(request):
 
 def welcome(request):
     return render(request,'welcome.html')
+
+def verify(request, auth_token):
+    profile_obj=Profile.objects.filter(auth_token=auth_token).first()
+    if profile_obj:
+        profile_obj.is_verified=True
+        profile_obj.save()
+        messages.success(request,'Your Account has been verified')
+        return redirect('/')
+    else:
+        return redirect('/error/')
+
+
+def send_email(email,token):
+    subject='Your account needs to be verified'
+    message=f'Click on the given link to verify your account http://127.0.0.1:8000/verify/{token}'
+    email_from=settings.EMAIL_HOST_USER
+    recipient_list=[email]
+    send_mail(subject,message,email_from,recipient_list)
+
+def error(request):
+    return render(request,'error.html')
