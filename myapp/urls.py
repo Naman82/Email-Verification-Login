@@ -6,4 +6,5 @@ urlpatterns=[
     path('register/',views.register,name='register'),
     path('success/',views.success,name='success'),
     path('token/',views.token_send,name='token_send'),
+    path('welcome/',views.welcome,name='welcome'),
 ]

@@ -42,3 +42,6 @@ def success(request):
 
 def token_send(request):
     return render(request,'token_send.html')
+
+def welcome(request):
+    return render(request,'welcome.html')
