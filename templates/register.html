@@ -4,6 +4,13 @@
 {% block body %}
 <div class="container">
   <h1 class="display-3 mb-4">Register </h1>
+  <div>
+    {% if messages %}
+    {% for message in messages %}
+    <h3 style="color: red;">{{message}}</h3>
+    {% endfor %}
+    {% endif %}
+  </div>
   <form action="/register/" method="post">
       {% csrf_token %}
   <div class="form-floating mb-3">
